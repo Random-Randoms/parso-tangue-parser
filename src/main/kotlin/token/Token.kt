@@ -1,0 +1,117 @@
+package org.example.token
+
+/**
+ * Interface for ParsoTangue tokens
+ */
+sealed interface Token
+
+/**
+ * Identifier token
+ *
+ * Consists of nonempty string of letters, digits or underscores,
+ * starting with letter or underscore
+ *
+ * @property string name of the identifier
+ */
+data class Identifier(val string: String) : Token
+
+/**
+ * Literal token
+ */
+sealed interface Literal : Token
+
+/**
+ * Integer literal token
+ *
+ * @property value the represented value
+ */
+sealed interface IntegerLiteral : Literal {
+    val value: Int
+}
+
+/**
+ * Binary literal token
+ *
+ * Consists of string of zeroes or ones, prepended with ```0b``` or ```0B``` prefix
+ *
+ * Represents non-negative integer with corresponding binary form
+ */
+data class BinaryLiteral(override val value: Int) : IntegerLiteral
+
+/**
+ * Decimal literal token
+ *
+ * Consists of string of zeroes or ones, possibly prepended with a minus
+ */
+data class DecimalLiteral(override val value: Int) : IntegerLiteral
+
+/**
+ * Hexadecimal literal token
+ *
+ * Consists of string of hexadecimal digits (decimal digits and letters from ```a``` to ```f``` inclusively),
+ * prepended with ```0x``` or ```0X``` prefix
+ *
+ * Represents non-negative integer with corresponding binary form
+ */
+data class HexadecimalLiteral(override val value: Int) : IntegerLiteral
+
+/**
+ * String literal token.
+ *
+ * Consists of string of any symbols (but newline, double quotes), surrounded by double quotes
+ *
+ * Represents a string
+ */
+data class StringLiteral(val value: String) : Literal
+
+/**
+ * Char literal token.
+ *
+ * Consists of a single character, surrounded by single quotes
+ *
+ * Represents a char
+ */
+data class CharLiteral(val value: Char) : Literal
+
+/**
+ * Inline comment token
+ *
+ * Consists of a string, prepended with a ```#``` symbol
+ */
+data object InlineComment : Token
+
+/**
+ * Whitespace token
+ *
+ * Consists of whitespace characters: spaces and tabs
+ */
+data object WhiteSpace : Token
+
+/**
+ * Newline token
+ *
+ * LF or CRLF
+ */
+data object NewLine : Token
+
+data object FunKeyword : Token
+
+data object ReturnKeyword : Token
+
+data object ValKeyword : Token
+
+data object IfKeyword : Token
+
+data object ElseKeyword : Token
+
+data object LeftCurl : Token
+
+data object RightCurl : Token
+
+data object LeftParen : Token
+
+data object RightParen : Token
+
+data object Colon : Token
+
+data object Comma : Token
