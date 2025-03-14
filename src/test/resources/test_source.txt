@@ -1,0 +1,14 @@
+fun factorial(a: Int) {
+	if (a == 0) return 1
+	
+	return a * factorial(a - 0b1)
+}
+
+fun main() {
+	val abc = 0xA0_01_0B
+	val _gg0 = factorial(10)  # calculate factorial
+
+	abc = (abc+_gg0)/0b10
+
+	return 0
+}
