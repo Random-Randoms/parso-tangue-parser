@@ -65,6 +65,13 @@ data class HexadecimalLiteral(override val value: Int) : IntegerLiteral
 data class StringLiteral(val value: String) : Literal
 
 /**
+ * Bad string literal token
+ *
+ * Consists of a malformed string literal --- not having en enclosing double quote on the same line
+ */
+data object BadStringLiteral : Literal
+
+/**
  * Char literal token.
  *
  * Consists of a single character, surrounded by single quotes
@@ -72,6 +79,14 @@ data class StringLiteral(val value: String) : Literal
  * Represents a char
  */
 data class CharLiteral(val value: Char) : Literal
+
+/**
+ * Bad char literal token
+ *
+ * Consists of a string, surrounded by single quotes, containing incorrect char:
+ * no symbols, more than two symbols, two symbols in incorrect backslash notation
+ */
+data object BadCharLiteral : Literal
 
 /**
  * Inline comment token
@@ -115,3 +130,7 @@ data object RightParen : Token
 data object Colon : Token
 
 data object Comma : Token
+
+data object EOF : Token
+
+data object UnknownSymbol : Token
