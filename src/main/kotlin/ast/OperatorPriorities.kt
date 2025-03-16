@@ -5,6 +5,11 @@ import org.example.token.OperatorIdentifier
 private val priorities =
     mapOf(
         OperatorIdentifier("=") to 1,
+        OperatorIdentifier("+=") to 1,
+        OperatorIdentifier("-=") to 1,
+        OperatorIdentifier("*=") to 1,
+        OperatorIdentifier("/=") to 1,
+        OperatorIdentifier("%=") to 1,
         OperatorIdentifier(">") to 2,
         OperatorIdentifier("<") to 2,
         OperatorIdentifier(">=") to 2,
