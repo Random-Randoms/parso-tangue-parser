@@ -30,7 +30,7 @@ internal fun Char.isZero() = this == '0'
 
 internal fun Char.isUnderscore() = this == '_'
 
-internal fun Char.isOperatorSymbol() = this in listOf('-', '+', '*', '/', '%', '=')
+internal fun Char.isOperatorSymbol() = this in listOf('-', '+', '*', '/', '%', '=', '>', '<')
 
 internal fun Char.isCR() = this == '\r'
 

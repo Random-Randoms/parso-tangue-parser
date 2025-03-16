@@ -6,14 +6,23 @@ package org.example.token
 sealed interface Token
 
 /**
- * Identifier token
+ * Letter identifier token
  *
  * Consists of nonempty string of letters, digits or underscores,
  * starting with letter or underscore
  *
  * @property string name of the identifier
  */
-data class Identifier(val string: String) : Token
+data class LetterIdentifier(val string: String) : Token
+
+/**
+ * Letter identifier token
+ *
+ * Consists of nonempty string of operator symbols: "+", "-", "*", "/", "%", "=", ">", "<"
+ *
+ * @property string name of the identifier
+ */
+data class OperatorIdentifier(val string: String) : Token
 
 /**
  * Literal token
@@ -113,7 +122,11 @@ data object FunKeyword : Token
 
 data object ReturnKeyword : Token
 
-data object ValKeyword : Token
+sealed interface ObjectDeclarationKeyword : Token
+
+data object ValKeyword : ObjectDeclarationKeyword
+
+data object VarKeyword : ObjectDeclarationKeyword
 
 data object IfKeyword : Token
 
