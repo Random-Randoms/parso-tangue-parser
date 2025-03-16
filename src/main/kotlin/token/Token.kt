@@ -1,8 +1,12 @@
 package org.example.token
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 /**
  * Interface for ParsoTangue tokens
  */
+@Serializable
 sealed interface Token
 
 /**
@@ -13,6 +17,7 @@ sealed interface Token
  *
  * @property string name of the identifier
  */
+@Serializable
 data class LetterIdentifier(val string: String) : Token
 
 /**
@@ -22,11 +27,13 @@ data class LetterIdentifier(val string: String) : Token
  *
  * @property string name of the identifier
  */
+@Serializable
 data class OperatorIdentifier(val string: String) : Token
 
 /**
  * Literal token
  */
+@Serializable
 sealed interface Literal : Token
 
 /**
@@ -34,6 +41,7 @@ sealed interface Literal : Token
  *
  * @property value the represented value
  */
+@Serializable
 sealed interface IntegerLiteral : Literal {
     val value: Int
 }
@@ -45,6 +53,8 @@ sealed interface IntegerLiteral : Literal {
  *
  * Represents non-negative integer with corresponding binary form
  */
+@Serializable
+@SerialName("BinaryLiteral")
 data class BinaryLiteral(override val value: Int) : IntegerLiteral
 
 /**
@@ -52,6 +62,8 @@ data class BinaryLiteral(override val value: Int) : IntegerLiteral
  *
  * Consists of string of zeroes or ones, possibly prepended with a minus
  */
+@Serializable
+@SerialName("DecimalLiteral")
 data class DecimalLiteral(override val value: Int) : IntegerLiteral
 
 /**
@@ -62,6 +74,8 @@ data class DecimalLiteral(override val value: Int) : IntegerLiteral
  *
  * Represents non-negative integer with corresponding binary form
  */
+@Serializable
+@SerialName("HexadecimalLiteral")
 data class HexadecimalLiteral(override val value: Int) : IntegerLiteral
 
 /**
@@ -71,6 +85,8 @@ data class HexadecimalLiteral(override val value: Int) : IntegerLiteral
  *
  * Represents a string
  */
+@Serializable
+@SerialName("StringLiteral")
 data class StringLiteral(val value: String) : Literal
 
 /**
@@ -78,6 +94,8 @@ data class StringLiteral(val value: String) : Literal
  *
  * Consists of a malformed string literal --- not having en enclosing double quote on the same line
  */
+@Serializable
+@SerialName("BadStringLiteral")
 data object BadStringLiteral : Literal
 
 /**
@@ -87,6 +105,8 @@ data object BadStringLiteral : Literal
  *
  * Represents a char
  */
+@Serializable
+@SerialName("CharLiteral")
 data class CharLiteral(val value: Char) : Literal
 
 /**
@@ -95,6 +115,8 @@ data class CharLiteral(val value: Char) : Literal
  * Consists of a string, surrounded by single quotes, containing incorrect char:
  * no symbols, more than two symbols, two symbols in incorrect backslash notation
  */
+@Serializable
+@SerialName("BadCharLiteral")
 data object BadCharLiteral : Literal
 
 /**
