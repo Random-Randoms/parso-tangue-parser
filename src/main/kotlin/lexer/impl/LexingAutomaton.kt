@@ -23,7 +23,7 @@ internal class LexingAutomaton {
 
             if (result.second != null) {
                 flush()
-                tokens.addLast(result.second)
+                tokens.addLast(result.second!!)
             }
 
             if (result.first) {
