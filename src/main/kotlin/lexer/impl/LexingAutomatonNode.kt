@@ -284,7 +284,7 @@ internal class OperatorIdentifier : LexingAutomatonNode {
             return consume()
         }
 
-        return automaton.retainAndEmit(Identifier(automaton.accumulated.dropLast(1)))
+        return automaton.retainAndEmit(OperatorIdentifier(automaton.accumulated.dropLast(1)))
     }
 }
 
@@ -298,7 +298,7 @@ internal class LetterIdentifier : LexingAutomatonNode {
         }
 
         return automaton.retainAndEmit(
-            keywords[automaton.accumulated.dropLast(1)] ?: Identifier(automaton.accumulated.dropLast(1)),
+            keywords[automaton.accumulated.dropLast(1)] ?: LetterIdentifier(automaton.accumulated.dropLast(1)),
         )
     }
 }
